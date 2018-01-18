@@ -7,7 +7,7 @@ using Sitecore.Globalization;
 using Sitecore.Pipelines.Save;
 using System;
 
-namespace Sitecore.ExperienceEditor.Speak.Ribbon.Requests.SaveItem
+namespace Sitecore.Support.ExperienceEditor.Speak.Ribbon.Requests.SaveItem
 {
   public class CheckRevision : PipelineProcessorRequest<PageContext>
   {
@@ -15,7 +15,7 @@ namespace Sitecore.ExperienceEditor.Speak.Ribbon.Requests.SaveItem
     {
       SaveArgs.SaveItem saveItem = base.RequestContext.GetSaveArgs().Items[0];
       PipelineProcessorResponseValue pipelineProcessorResponseValue = new PipelineProcessorResponseValue();
-      Item item = base.RequestContext.Item.Database.GetItem(saveItem.ID, Language.Parse(base.RequestContext.Language), Sitecore.Data.Version.Parse(base.RequestContext.Version));
+      Item item = base.RequestContext.Item.Database.GetItem(saveItem.ID, saveItem.Language, saveItem.Version);
       if (item == null)
       {
         return pipelineProcessorResponseValue;
