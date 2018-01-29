@@ -20,6 +20,10 @@ namespace Sitecore.Support.ExperienceEditor.Speak.Ribbon.Requests.SaveItem
       {
         return pipelineProcessorResponseValue;
       }
+      if (!item.Locking.IsLocked())
+      {
+        item.Locking.Lock();
+      }
       string text = item[FieldIDs.Revision].Replace("-", string.Empty);
       if (saveItem.Revision == string.Empty)
       {
